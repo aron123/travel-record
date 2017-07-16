@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelRecord.AddCompanyData">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Cég neve" VerticalOptions="Center"/>
+            <Entry Placeholder="Cég címe" VerticalOptions="Center"/>
+            <Entry Placeholder="Adószám" VerticalOptions="Center"/>
+            <Button Text="Rendben" VerticalOptions="Center" Clicked="Button_AddCompanyDataToDB"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
