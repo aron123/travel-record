@@ -11,13 +11,12 @@
                      Order="Secondary"/>
     </ContentPage.ToolbarItems>
 
-
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="CompanyName" Placeholder="Cég neve" VerticalOptions="Center"/>
-            <Entry x:Name="CompanyAddress" Placeholder="Cég címe" VerticalOptions="Center"/>
-            <Entry x:Name="CompanyVAT" Placeholder="Adószám" VerticalOptions="Center"/>
-            <Button Text="Rendben" VerticalOptions="Center" Clicked="Button_AddCompanyDataToDB"/>
+        <StackLayout Margin="10">
+            <Entry x:Name="CompanyName" Placeholder="Cég neve" />
+            <Entry x:Name="CompanyAddress" Placeholder="Cég címe" />
+            <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
+            <Button Text="Rendben" Clicked="Button_AddCompanyDataToDB"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
