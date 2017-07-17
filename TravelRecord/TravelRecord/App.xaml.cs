@@ -13,7 +13,7 @@ namespace TravelRecord
         {
             InitializeComponent();
 
-            MainPage = new TravelRecord.AddCompanyData();
+            MainPage = new NavigationPage(new TravelRecord.AddCompanyData());
         }
 
         protected override void OnStart()
