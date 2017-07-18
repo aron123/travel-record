@@ -13,6 +13,9 @@
 
     <ContentPage.Content>
         <StackLayout Margin="10">
+            <Label FontSize="Medium" Text="Első lépésként adja meg cége adatait!"/>
+            <Label FontSize="Small" HorizontalOptions="FillAndExpand"
+                   Text="Az adatok megadása nem kötelező, illetve azok valódisága nem kerül ellenőrzésre. Az adatok csak az Ön eszközén kerülnek tárolásra, azokhoz a program fejlesztője nem fér hozzá."/>
             <Entry x:Name="CompanyName" Placeholder="Cég neve" />
             <Entry x:Name="CompanyAddress" Placeholder="Cég címe" />
             <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
