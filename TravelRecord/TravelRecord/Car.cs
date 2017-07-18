@@ -7,7 +7,7 @@ namespace TravelRecord
         [PrimaryKey, AutoIncrement]
         public int ID { get; }
 
-        public int CompanyID { get; set; }
+        //public int CompanyID { get; set; }
 
         public string CarModel { get; set; }
 
