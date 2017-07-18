@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TravelRecord"
              x:Class="TravelRecord.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
+	<Label Text="Congratulations, company data is set!" 
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
 
