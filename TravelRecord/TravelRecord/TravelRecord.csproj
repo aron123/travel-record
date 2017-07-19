@@ -42,6 +42,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Car.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="IDatabaseConnection.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
