@@ -3,7 +3,7 @@
     public interface IDatabaseConnection
     {
         /// <summary>
-        /// Return the proper connection string
+        /// Create the proper platform-specific path for database and return an SQLiteConnection
         /// </summary>
         /// <returns></returns>
         SQLite.SQLiteConnection DbConnection(string dbName);
