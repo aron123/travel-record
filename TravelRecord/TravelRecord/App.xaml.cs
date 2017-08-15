@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using SQLite;
 
 namespace TravelRecord
 {
@@ -13,7 +14,6 @@ namespace TravelRecord
         {
             InitializeComponent();
             SetMainPage();
-            
         }
 
         protected override void OnStart()
@@ -47,13 +47,46 @@ namespace TravelRecord
                 return false;
             }
         }
+
+        public bool IsCarDataSet()
+        {
+            SQLiteConnection database;
+            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
+
+            // Check if Car table is exist
+            string IsExist = database.ExecuteScalar<string>("SELECT name FROM sqlite_master WHERE type='table' AND name='Car';"); 
+            if (IsExist == null) return false;
+
+            //Check if existing Car table is empty
+            int IsEmpty = database.Query<Car>("SELECT 1 FROM Car LIMIT 1;").Count;
+            if (IsEmpty == 0) return false;
+
+            return true;
+        }
+
         /// <summary>
-        /// Set the main page of the application depending on company's data is set or unset.
+        /// Set the main page of the application depending on company's and cars' data is set or unset.
         /// </summary>
         public void SetMainPage()
         {
             //TODO: Change MainPage to travel records' page
-            MainPage = IsCompanyDataSet() ? new NavigationPage(new TravelRecord.MainPage()) : new NavigationPage(new TravelRecord.AddCompanyData());
+
+            if (IsCompanyDataSet())
+            {
+                if (IsCarDataSet())
+                {
+                    MainPage = new NavigationPage(new MainPage());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new AddCarData());
+                }
+            }
+            else
+            {
+                MainPage = new NavigationPage(new AddCompanyData());
+            }
+
         }
     }
 }

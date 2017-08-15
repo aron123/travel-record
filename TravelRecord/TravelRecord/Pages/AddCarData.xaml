@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TravelRecord.AddCompanyData">
-
+             x:Class="TravelRecord.AddCarData">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit car"
                      Icon="edit.png"
@@ -10,20 +10,16 @@
         <ToolbarItem Text="Settings"
                      Order="Secondary"/>
     </ContentPage.ToolbarItems>
-
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10">
-                <Label FontSize="Medium" Text="Adja meg cége adatait!"/>
+                <Label FontSize="Medium" Text="Adja meg az autó adatait!"/>
                 <Label FontSize="Small" HorizontalOptions="FillAndExpand"
                        Text="Az adatok megadása nem kötelező, illetve azok valódisága nem kerül ellenőrzésre. Az adatok csak az Ön eszközén kerülnek tárolásra, azokhoz a program fejlesztője nem fér hozzá."/>
-                <Entry x:Name="CompanyName" Placeholder="Cég neve" />
-                <Entry x:Name="CompanyAddress" Placeholder="Cég címe" />
-                <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
-                <Button Text="Rendben" Clicked="Button_SaveCompanyData"/>
-                <!-- DEBUG -->
-                <Button Text="Adatellenőrzés" Clicked="DEBUGButton_CheckData"/>
-                <!-- /DEBUG -->
+                <Entry x:Name="LicensePlateNumber" Placeholder="Rendszám" />
+                <Entry x:Name="CarModel" Placeholder="Modell" />
+                <Button Text="Rendben" Clicked="Button_SaveCarData"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

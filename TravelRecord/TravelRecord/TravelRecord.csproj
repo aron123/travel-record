@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Pages\AddCarData.xaml.cs">
+      <DependentUpon>AddCarData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddCompanyData.xaml.cs">
       <DependentUpon>AddCompanyData.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\AddCompanyData.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AddCarData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -26,7 +26,7 @@ namespace TravelRecord
             Application.Current.Properties["CompanyVAT"] = CompanyVAT.Text;
         }
 
-        //FOR DEBUG
+        #region DEBUG
         private void DEBUGButton_CheckData(object sender, EventArgs e)
         {
             if (Application.Current.Properties.ContainsKey("CompanyName")
@@ -43,7 +43,7 @@ namespace TravelRecord
                 DisplayAlert("NINCS TÁROLT ADAT", "", "ok");
 
 
-
+            /*
             //DATABASE TEST
             SQLiteConnection database;
             database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
@@ -82,8 +82,15 @@ namespace TravelRecord
 
             // output the data
             DisplayAlert("DATA IS", retCar.ToString() + "\n\n" + retTravel.ToString() + "\n\n" + retCar2.ToString() + "\n\n" + retTravel2.ToString(), "OK");
+            
+            var label = new Label() { Text = "asd" };
+            var layout = AddCompanyDataBody;
+            layout.Children.Add(label);
 
+    */
+            
+            
         }
-        //
+        #endregion
     }
 }
