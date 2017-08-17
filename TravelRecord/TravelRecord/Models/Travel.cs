@@ -8,7 +8,9 @@ namespace TravelRecord
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
-        public DateTime Date { get; set; }
+        public string CarLicensePlate { get; set; }
+
+        public DateTime TravelDate { get; set; }
 
         public string StartPoint { get; set; }
 
@@ -18,7 +20,7 @@ namespace TravelRecord
 
         public override string ToString()
         {
-            return string.Format("[ Travel: ID={0}, Date={1}, StartPoint={2}, Destination={3}, Distance={4} ]", ID, Date.ToString(), StartPoint, Destination, Distance);
+            return string.Format("[ Travel: CarLicensePlate={0}, TravelDate={1}, StartPoint={2}, Destination={3}, Distance={4} ]", CarLicensePlate, TravelDate.ToString(), StartPoint, Destination, Distance);
         }
     }
 }
