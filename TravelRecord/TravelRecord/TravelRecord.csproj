@@ -46,6 +46,9 @@
     </Compile>
     <Compile Include="Models\Car.cs" />
     <Compile Include="Data\IDatabaseConnection.cs" />
+    <Compile Include="Pages\AddTravelData.xaml.cs">
+      <DependentUpon>AddTravelData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\AddCarData.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AddTravelData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

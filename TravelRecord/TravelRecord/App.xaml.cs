@@ -13,6 +13,7 @@ namespace TravelRecord
         public App()
         {
             InitializeComponent();
+            DEBUG_InitializeTables();
             SetMainPage();
         }
 
@@ -20,7 +21,6 @@ namespace TravelRecord
         {
             // Handle when app starts
             SetMainPage();
-
         }
 
         protected override void OnSleep()
@@ -69,7 +69,13 @@ namespace TravelRecord
         /// </summary>
         public void SetMainPage()
         {
-            //TODO: Change MainPage to travel records' page
+            //TODO: * Change MainPage to travel records' page
+            //      * Create algorithm to find initial car's license plate
+            SQLiteConnection database;
+            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
+            var initial = database.FindWithQuery<Car>("SELECT LicensePlateNumber FROM Car ORDER BY LicensePlateNumber ASC LIMIT 1");
+
+            MainPage = new NavigationPage(new AddTravelData(initial.LicensePlateNumber)); return;
 
             if (IsCompanyDataSet())
             {
@@ -87,6 +93,26 @@ namespace TravelRecord
                 MainPage = new NavigationPage(new AddCompanyData());
             }
 
+        }
+
+        private void DEBUG_InitializeTables()
+        {
+            Car car = new Car() { LicensePlateNumber = "ABC123", CarModel = "Sárga Ferrari" };
+            Travel travel = new Travel() { CarLicensePlate = "ABC123", TravelDate = new DateTime(2017, 02, 15),
+                                           StartPoint = "Litka", Destination = "Miskolc", Distance = 60 };
+            SQLiteConnection database;
+            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
+
+            database.DropTable<Car>();
+            database.DropTable<Travel>();
+
+            database.CreateTable<Car>();
+            database.CreateTable<Travel>();
+
+            database.Insert(car);
+            database.Insert(travel);
+
+            database.Close();
         }
     }
 }

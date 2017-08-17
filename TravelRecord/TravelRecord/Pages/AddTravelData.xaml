@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelRecord.AddTravelData">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10">
+                <Label FontSize="Medium" Text="Adja meg az utazás adatait!"/>
+
+                <Label>Utazás kezdete:</Label>
+                <DatePicker x:Name="TravelDate" DateSelected="DatePicker_DateSelected" />
+                <Entry x:Name="StartPoint" Placeholder="Kezdőpont" />
+                <Entry x:Name="Destination" Placeholder="Célpont" />
+                <Entry x:Name="Distance" Placeholder="Távolság (kilométer)" />
+
+                <Button Text="Rendben" Clicked="Button_SaveTravelData"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
