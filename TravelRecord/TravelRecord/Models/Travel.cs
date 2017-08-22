@@ -3,7 +3,7 @@ using SQLite;
 
 namespace TravelRecord
 {
-    class Travel
+    public class Travel
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -20,7 +20,7 @@ namespace TravelRecord
 
         public override string ToString()
         {
-            return string.Format("[ Travel: CarLicensePlate={0}, TravelDate={1}, StartPoint={2}, Destination={3}, Distance={4} ]", CarLicensePlate, TravelDate.ToString(), StartPoint, Destination, Distance);
+            return string.Format("[ Travel: ID={0}, CarLicensePlate={1}, TravelDate={2}, StartPoint={3}, Destination={4}, Distance={5} ]", ID, CarLicensePlate, TravelDate.ToString(), StartPoint, Destination, Distance);
         }
     }
 }
