@@ -24,11 +24,8 @@
                 <Entry x:Name="CompanyAddress" Placeholder="Címe" />
                 <Label>Adószám:</Label>
                 <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
-                
+
                 <Button Text="Rendben" Clicked="Button_SaveCompanyData"/>
-                <!-- DEBUG -->
-                <Button Text="Adatellenőrzés" Clicked="DEBUGButton_CheckData"/>
-                <!-- /DEBUG -->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
