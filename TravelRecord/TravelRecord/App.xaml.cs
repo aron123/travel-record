@@ -13,8 +13,7 @@ namespace TravelRecord
         public App()
         {
             InitializeComponent();
-            DEBUG_InitializeTables();
-            SetMainPage();
+            //DEBUG_InitializeTables();
         }
 
         protected override void OnStart()
@@ -31,7 +30,6 @@ namespace TravelRecord
         protected override void OnResume()
         {
             // Handle when app resumes
-            SetMainPage();
         }
 
         public bool IsCompanyDataSet()
@@ -68,20 +66,12 @@ namespace TravelRecord
         /// Set the main page of the application depending on company's and cars' data is set or unset.
         /// </summary>
         public void SetMainPage()
-        {
-            //TODO: * Change MainPage to travel records' page
-            //      * Create algorithm to find initial car's license plate
-            SQLiteConnection database;
-            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
-            var initial = database.FindWithQuery<Car>("SELECT LicensePlateNumber FROM Car ORDER BY LicensePlateNumber ASC LIMIT 1");
-
-            MainPage = new NavigationPage(new AddTravelData(initial.LicensePlateNumber)); return;
-
+        {   
             if (IsCompanyDataSet())
             {
                 if (IsCarDataSet())
                 {
-                    MainPage = new NavigationPage(new MainPage());
+                    MainPage = new NavigationPage(new ListTravels());
                 }
                 else
                 {
@@ -98,8 +88,45 @@ namespace TravelRecord
         private void DEBUG_InitializeTables()
         {
             Car car = new Car() { LicensePlateNumber = "ABC123", CarModel = "Sárga Ferrari" };
-            Travel travel = new Travel() { CarLicensePlate = "ABC123", TravelDate = new DateTime(2017, 02, 15),
-                                           StartPoint = "Litka", Destination = "Miskolc", Distance = 60 };
+            Car car2 = new Car() { LicensePlateNumber = "XYZ987", CarModel = "Trabant 601" };
+            Travel travel0 = new Travel()
+            {
+                CarLicensePlate = "ABC123",
+                TravelDate = new DateTime(2017, 02, 15),
+                StartPoint = "Encs",
+                Destination = "Miskolc",
+                Distance = 60
+            };
+
+            Travel travel1 = new Travel()
+            {
+                CarLicensePlate = "ABC123",
+                TravelDate = new DateTime(2015, 05, 15),
+                StartPoint = "Miskolc",
+                Destination = "Encs",
+                Distance = 60
+            };
+
+            Travel travel2 = new Travel()
+            {
+                CarLicensePlate = "ABC123",
+                TravelDate = new DateTime(2020, 12, 31),
+                StartPoint = "Budapest",
+                Destination = "Hatvan",
+                Distance = 59
+            };
+
+            Travel travel3 = new Travel()
+            {
+                CarLicensePlate = "ABC123",
+                TravelDate = new DateTime(2007, 05, 06),
+                StartPoint = "Győr",
+                Destination = "Szeged",
+                Distance = 280
+            };
+
+            Travel[] travels = { travel0, travel1, travel2, travel3 };
+
             SQLiteConnection database;
             database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
 
@@ -110,9 +137,12 @@ namespace TravelRecord
             database.CreateTable<Travel>();
 
             database.Insert(car);
-            database.Insert(travel);
+            database.Insert(car2);
 
-            database.Close();
+            for(int i = 0; i < travels.Length; i++)
+            {
+                database.Insert(travels[i]);
+            }
         }
     }
 }

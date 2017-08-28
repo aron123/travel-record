@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelRecord.ListTravels">
+    <ContentPage.Content>
+        <StackLayout Margin="10" >
+            <Picker x:Name="Cars" ItemsSource="{Binding CarList}" ItemDisplayBinding="{Binding LicensePlateNumber}" SelectedIndexChanged="Picker_CarSelected" />
+            <Button Text="Új utazás" Clicked="Button_AddNewTravel" />
+
+            <ListView x:Name="Travels" 
+            ItemsSource="{Binding TravelList}"
+            ItemTapped="Item_HandleTapped"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Text}" 
+                               FontSize="Medium" />
+                                <Label Text="{Binding Detail}"
+                               FontSize="Small"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
