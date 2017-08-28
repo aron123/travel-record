@@ -7,10 +7,13 @@
             <StackLayout Margin="10">
                 <Label FontSize="Medium" Text="Adja meg az utazás adatait!"/>
 
-                <Label>Utazás kezdete:</Label>
+                <Label>Utazás időpontja:</Label>
                 <DatePicker x:Name="TravelDate" DateSelected="DatePicker_DateSelected" />
+                <Label>Kezdőpont:</Label>
                 <Entry x:Name="StartPoint" Placeholder="Kezdőpont" />
+                <Label>Célpont:</Label>
                 <Entry x:Name="Destination" Placeholder="Célpont" />
+                <Label>Távolság (km):</Label>
                 <Entry x:Name="Distance" Placeholder="Távolság (kilométer)" />
 
                 <Button Text="Rendben" Clicked="Button_SaveTravelData"/>

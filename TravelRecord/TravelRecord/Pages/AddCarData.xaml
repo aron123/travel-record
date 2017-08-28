@@ -17,8 +17,12 @@
                 <Label FontSize="Medium" Text="Adja meg az autó adatait!"/>
                 <Label FontSize="Small" HorizontalOptions="FillAndExpand"
                        Text="Az adatok megadása nem kötelező, illetve azok valódisága nem kerül ellenőrzésre. Az adatok csak az Ön eszközén kerülnek tárolásra, azokhoz a program fejlesztője nem fér hozzá."/>
+
+                <Label>Rendszám:</Label>
                 <Entry x:Name="LicensePlateNumber" Placeholder="Rendszám" />
+                <Label>Modell: </Label>
                 <Entry x:Name="CarModel" Placeholder="Modell" />
+                
                 <Button Text="Rendben" Clicked="Button_SaveCarData"/>
             </StackLayout>
         </ScrollView>

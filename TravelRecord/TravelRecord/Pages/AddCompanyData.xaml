@@ -17,9 +17,14 @@
                 <Label FontSize="Medium" Text="Adja meg cége adatait!"/>
                 <Label FontSize="Small" HorizontalOptions="FillAndExpand"
                        Text="Az adatok megadása nem kötelező, illetve azok valódisága nem kerül ellenőrzésre. Az adatok csak az Ön eszközén kerülnek tárolásra, azokhoz a program fejlesztője nem fér hozzá."/>
+
+                <Label>Cég vagy magánszemély neve:</Label>
                 <Entry x:Name="CompanyName" Placeholder="Cég neve" />
-                <Entry x:Name="CompanyAddress" Placeholder="Cég címe" />
+                <Label>Cím:</Label>
+                <Entry x:Name="CompanyAddress" Placeholder="Címe" />
+                <Label>Adószám:</Label>
                 <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
+                
                 <Button Text="Rendben" Clicked="Button_SaveCompanyData"/>
                 <!-- DEBUG -->
                 <Button Text="Adatellenőrzés" Clicked="DEBUGButton_CheckData"/>
