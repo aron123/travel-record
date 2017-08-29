@@ -2,18 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelRecord.AddCompanyData"
-             Title="Cégadatok">
+             Title="Alapadatok">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10">
-                <Label FontSize="Medium" Text="Adja meg cége adatait!"/>
+                <Label FontSize="Medium" Text="Adja meg adatait!"/>
                 <Label FontSize="Small" HorizontalOptions="FillAndExpand"
                        Text="Az adatok megadása nem kötelező, illetve azok valódisága nem kerül ellenőrzésre. Az adatok csak az Ön eszközén kerülnek tárolásra, azokhoz a program fejlesztője nem fér hozzá."/>
 
                 <Label>Cég vagy magánszemély neve:</Label>
-                <Entry x:Name="CompanyName" Placeholder="Cég neve" />
+                <Entry x:Name="CompanyName" Placeholder="Név" />
                 <Label>Cím:</Label>
-                <Entry x:Name="CompanyAddress" Placeholder="Címe" />
+                <Entry x:Name="CompanyAddress" Placeholder="Cím" />
                 <Label>Adószám:</Label>
                 <Entry x:Name="CompanyVAT" Placeholder="Adószám" />
 
