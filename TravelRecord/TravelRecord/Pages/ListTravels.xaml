@@ -2,6 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelRecord.ListTravels">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Alapadatok szerkesztése"
+                     Order="Secondary" />
+        <ToolbarItem Text="Autók kezelése"
+                     Order="Secondary" />
+        <ToolbarItem Text="Névjegy"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="10" >
             <Picker x:Name="Cars" ItemsSource="{Binding CarList}" ItemDisplayBinding="{Binding LicensePlateNumber}" SelectedIndexChanged="Picker_CarSelected" />

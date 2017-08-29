@@ -15,7 +15,6 @@ namespace TravelRecord
 	{
 		public AddCompanyData()
 		{
-            Title = "Cégadatok";
 			InitializeComponent();
 		}
 

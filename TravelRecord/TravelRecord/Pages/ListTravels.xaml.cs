@@ -94,8 +94,9 @@ namespace TravelRecord
             ((ListView)sender).SelectedItem = null;
         }
 
-        private void Picker_CarSelected(object sender, EventArgs e)
+        void Picker_CarSelected(object sender, EventArgs e)
         {
+            SetTitle("Utazások: " + LicensePlateNumber);
             TravelList = LoadTravels(LicensePlateNumber);
             Travels.ItemsSource = TravelList;
         }
@@ -178,6 +179,11 @@ namespace TravelRecord
         ObservableCollection<Travel> SortListByTravelDateDesc(ObservableCollection<Travel> list)
         {
             return new ObservableCollection<Travel>(list.OrderByDescending(x => x.TravelDate).ToList());
+        }
+
+        void SetTitle(string title)
+        {
+            Title = title;
         }
     }
 }

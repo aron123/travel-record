@@ -14,7 +14,7 @@
                 <Label>Célpont:</Label>
                 <Entry x:Name="Destination" Placeholder="Célpont" />
                 <Label>Távolság (km):</Label>
-                <Entry x:Name="Distance" Placeholder="Távolság (kilométer)" />
+                <Entry x:Name="Distance" Placeholder="Távolság (kilométer)" Keyboard="Numeric" />
 
                 <Button Text="Rendben" Clicked="Button_SaveTravelData"/>
             </StackLayout>
