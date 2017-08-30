@@ -14,6 +14,7 @@ namespace TravelRecord
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageCars : ContentPage
     {
+        SQLiteConnection database = App.Database;
         private ObservableCollection<Car> CarList { get; set; }
 
         public ManageCars()
@@ -86,7 +87,6 @@ namespace TravelRecord
 
         ObservableCollection<Car> LoadCars()
         {
-            SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             List<Car> items = database.Query<Car>("SELECT * FROM Car ORDER BY LicensePlateNumber ASC");
             return new ObservableCollection<Car>(items);
         }
@@ -138,9 +138,7 @@ namespace TravelRecord
         /// <param name="item"></param>
         void RemoveFromDatabaseAndList(ObservableCollection<Car> list, Car item)
         {
-            SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             bool success = false;
-
             try
             {
                 database.Query<Travel>("DELETE FROM Travel WHERE CarLicensePlate=?", item.LicensePlateNumber);

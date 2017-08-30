@@ -17,7 +17,7 @@ namespace TravelRecord
     {
         ObservableCollection<Travel> TravelList { get; set; }
         ObservableCollection<Car> CarList { get; set; }
-        SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
+        SQLiteConnection database = App.Database;
 
         /// <summary>
         /// Actually selected car's license plate number

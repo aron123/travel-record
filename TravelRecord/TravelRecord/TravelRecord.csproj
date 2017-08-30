@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\DatabaseAssistant.cs" />
     <Compile Include="Data\IAsyncDatabaseConnection.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
@@ -52,6 +53,9 @@
     <Compile Include="Data\IDatabaseConnection.cs" />
     <Compile Include="Pages\AddTravelData.xaml.cs">
       <DependentUpon>AddTravelData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Error.xaml.cs">
+      <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListTravels.xaml.cs">
       <DependentUpon>ListTravels.xaml</DependentUpon>
@@ -126,6 +130,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\ManageCars.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Error.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -13,6 +13,7 @@ namespace TravelRecord
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddCarData : ContentPage
     {
+        SQLiteConnection database = App.Database;
         Car car = new Car();
         bool IsNewCar;
 
@@ -60,8 +61,6 @@ namespace TravelRecord
 
         void AddNewCar(Car car)
         {
-            //TODO: try-catch
-            SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             database.CreateTable<Car>();
             database.Insert(car);
             MessagingCenter.Send(this, "DatabaseOperationSucceeded", car);
@@ -69,11 +68,8 @@ namespace TravelRecord
 
         void UpdateCar(Car car)
         {
-            //TODO: try-catch
-            SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             database.CreateTable<Car>();
             database.Update(car);
-
             MessagingCenter.Send(this, "DatabaseOperationSucceeded", car);
         }
     }

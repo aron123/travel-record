@@ -18,6 +18,8 @@ namespace TravelRecord
         /// </summary>
         Travel travel = new Travel();
 
+        SQLiteConnection database = App.Database;
+
         bool IsNewTravel;
 
         /// <summary>
@@ -29,9 +31,6 @@ namespace TravelRecord
         {
             IsNewTravel = true;
             this.travel.CarLicensePlate = LicensePlateNumber;
-
-            SQLiteConnection database;
-            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
 
             Car test = new Car();
             test = database.FindWithQuery<Car>("SELECT * FROM Car WHERE LicensePlateNumber=?", LicensePlateNumber);
@@ -112,12 +111,8 @@ namespace TravelRecord
         /// <param name="travel">Travel to be added to database.</param>
         private void AddNewTravel(Travel travel)
         {
-            SQLiteConnection database;
-            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             database.CreateTable<Travel>();
-
             database.Insert(travel);
-
             MessagingCenter.Send(this, "DatabaseOperationSucceeded", travel);
         }
 
@@ -127,13 +122,8 @@ namespace TravelRecord
         /// <param name="travel">Travel to be changed in database.</param>
         private void UpdateTravel(Travel travel)
         {
-            //TODO: try-catch
-            SQLiteConnection database;
-            database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             database.CreateTable<Travel>();
-
             database.Update(travel);
-
             MessagingCenter.Send(this, "DatabaseOperationSucceeded", travel);
         }
     }
