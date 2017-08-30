@@ -2,7 +2,7 @@
 
 namespace TravelRecord
 {
-    class Car
+    public class Car
     {
         [PrimaryKey]
         public string LicensePlateNumber { get; set; }
