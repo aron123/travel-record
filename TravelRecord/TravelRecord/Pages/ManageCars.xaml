@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravelRecord.ManageCars"
+             Title="Autók">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Új autó"
+                     Icon="ic_add_white_24dp.png"
+                     Clicked="ToolbarItem_AddNewCar"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="Cars" 
+            ItemsSource="{Binding Cars}"
+            ItemTapped="Item_HandleTapped"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="10">
+                        <Label Text="{Binding LicensePlateNumber}" 
+                               FontSize="Medium" />
+                        <Label Text="{Binding CarModel}" 
+                               FontSize="Small" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
