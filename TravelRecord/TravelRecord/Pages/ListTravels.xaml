@@ -4,15 +4,18 @@
              x:Class="TravelRecord.ListTravels">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Alapadatok szerkesztése"
-                     Order="Secondary" />
+                     Order="Secondary" 
+                     Clicked="ToolbarItem_EditCompanyData"/>
         <ToolbarItem Text="Autók kezelése"
-                     Order="Secondary" />
+                     Order="Secondary" 
+                     Clicked="ToolbarItem_ManageCars"/>
         <ToolbarItem Text="Névjegy"
-                     Order="Secondary" />
+                     Order="Secondary" 
+                     Clicked="ToolbarItem_About"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="10" >
-            <Picker x:Name="Cars" ItemsSource="{Binding CarList}" ItemDisplayBinding="{Binding LicensePlateNumber}" SelectedIndexChanged="Picker_CarSelected" />
+            <Picker x:Name="Cars" ItemsSource="{Binding CarList}" ItemDisplayBinding="{Binding LicensePlateNumber}" SelectedIndexChanged="Picker_CarSelected"/>
             <Button Text="Új utazás" Clicked="Button_AddNewTravel" />
 
             <ListView x:Name="Travels" 

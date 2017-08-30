@@ -49,20 +49,31 @@ namespace TravelRecord
                         UpdateItemInList(CarList, car);
                         CarList = SortListByLicensePlateAsc(CarList);
                         Cars.ItemsSource = CarList;
+
+                        MessagingCenter.Send<ManageCars>(this, "CarListChanged");
                         MessagingCenter.Unsubscribe<AddCarData, Car>(this, "DatabaseOperationSucceeded");
                     });
                     break;
                 case "Törlés":
                     item = e.Item as Car;
+                    bool success = false;
+
                     try
                     {
                         RemoveFromDatabaseAndList(CarList, item);
+                        success = true;
+                        
                     }
                     catch (SQLiteException ex)
                     {
                         await DisplayAlert("Hiba", "Nem sikerült törölni az autót.", "OK");
                         ((ListView)sender).SelectedItem = null;
                     }
+                    finally
+                    {
+                        if (success) MessagingCenter.Send<ManageCars>(this, "CarListChanged");
+                    }
+                    
                     break;
                 default:
                     await DisplayAlert("Hiba", "Valami nem jó.", "OK");
@@ -88,6 +99,8 @@ namespace TravelRecord
                 CarList.Add(car);
                 CarList = SortListByLicensePlateAsc(CarList);
                 Cars.ItemsSource = CarList;
+
+                MessagingCenter.Send<ManageCars>(this, "CarListChanged");
                 MessagingCenter.Unsubscribe<AddCarData, Car>(this, "DatabaseOperationSucceeded");
             });
         }
@@ -130,6 +143,7 @@ namespace TravelRecord
 
             try
             {
+                database.Query<Travel>("DELETE FROM Travel WHERE CarLicensePlate=?", item.LicensePlateNumber);
                 database.Delete<Car>(item.LicensePlateNumber);
                 success = true;
             }

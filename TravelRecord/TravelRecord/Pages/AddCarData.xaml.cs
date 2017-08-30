@@ -64,7 +64,6 @@ namespace TravelRecord
             SQLiteConnection database = DependencyService.Get<IDatabaseConnection>().DbConnection("AppDatabase.db3");
             database.CreateTable<Car>();
             database.Insert(car);
-
             MessagingCenter.Send(this, "DatabaseOperationSucceeded", car);
         }
 

@@ -22,18 +22,32 @@ namespace TravelRecord
         /// <summary>
         /// Actually selected car's license plate number
         /// </summary>
-        string LicensePlateNumber { get { return Cars.Items[Cars.SelectedIndex]; } }
+        string LicensePlateNumber
+        {
+            get
+            {
+                try { return Cars.Items[Cars.SelectedIndex]; }
+                catch (ArgumentOutOfRangeException e) { return null; }
+            }
+        }
 
         public ListTravels()
         {
             InitializeComponent();
+            BindingContext = this;
 
             CarList = LoadCars();
             Cars.ItemsSource = CarList;
-            Cars.SelectedIndex = 0; 
-            // Picker_CarSelected called, TravelList loaded
+            Cars.SelectedIndex = 0;
+            // Picker_CarSelected is called, TravelList loaded
 
-            BindingContext = this;
+            //Update CarList when Cars table changed
+            MessagingCenter.Subscribe<ManageCars>(this, "CarListChanged", (sender) =>
+            {
+                CarList = LoadCars();
+                Cars.ItemsSource = CarList;
+                Cars.SelectedIndex = 0;
+            });
         }
 
         async void Button_AddNewTravel(object sender, EventArgs e)
@@ -44,6 +58,7 @@ namespace TravelRecord
                 TravelList.Add(travel);
                 TravelList = SortListByTravelDateDesc(TravelList);
                 Travels.ItemsSource = TravelList;
+                MessagingCenter.Unsubscribe<AddTravelData, Travel>(this, "DatabaseOperationSucceeded");
             });
         }
 
@@ -71,6 +86,7 @@ namespace TravelRecord
                         UpdateItemInList(TravelList, travel);
                         TravelList = SortListByTravelDateDesc(TravelList);
                         Travels.ItemsSource = TravelList;
+                        MessagingCenter.Unsubscribe<AddTravelData, Travel>(this, "DatabaseOperationSucceeded");
                     });
                     break;
                 case "Törlés":
@@ -184,6 +200,26 @@ namespace TravelRecord
         void SetTitle(string title)
         {
             Title = title;
+        }
+
+        async void ToolbarItem_EditCompanyData(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddCompanyData(
+                Application.Current.Properties["CompanyName"].ToString(),
+                Application.Current.Properties["CompanyAddress"].ToString(),
+                Application.Current.Properties["CompanyVAT"].ToString()
+                )
+            );
+        }
+
+        void ToolbarItem_ManageCars(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ManageCars());
+        }
+
+        async void ToolbarItem_About(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new About());
         }
     }
 }
