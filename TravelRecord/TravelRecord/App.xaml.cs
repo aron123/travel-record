@@ -94,6 +94,7 @@ namespace TravelRecord
         void ConfigureInstallation()
         {
             Application.Current.Properties["Installed"] = false;
+            Application.Current.SavePropertiesAsync();
             MainPage = new NavigationPage(new ListTravels());
             MessagingCenter.Send<App>(this, "GenerateInstallNavigationStack");
         }

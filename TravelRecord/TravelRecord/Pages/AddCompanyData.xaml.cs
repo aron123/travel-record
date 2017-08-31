@@ -35,13 +35,14 @@ namespace TravelRecord
             CompanyVAT.Text = vatnumber;
         }
 
-        private void Button_SaveCompanyData()
+        async void Button_SaveCompanyData()
         {
             Application.Current.Properties["CompanyName"] = CompanyName.Text;
             Application.Current.Properties["CompanyAddress"] = CompanyAddress.Text;
             Application.Current.Properties["CompanyVAT"] = CompanyVAT.Text;
+            await Application.Current.SavePropertiesAsync();
 
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
     }
 }

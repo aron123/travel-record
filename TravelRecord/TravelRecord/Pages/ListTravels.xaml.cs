@@ -61,6 +61,7 @@ namespace TravelRecord
                     Cars.SelectedIndex = 0;
 
                     Application.Current.Properties["Installed"] = true;
+                    Application.Current.SavePropertiesAsync();
 
                     MessagingCenter.Unsubscribe<AddCarData, Car>(this, "DatabaseOperationSucceeded");
                 });
@@ -224,12 +225,11 @@ namespace TravelRecord
 
         async void ToolbarItem_EditCompanyData(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddCompanyData(
-                Application.Current.Properties["CompanyName"].ToString(),
-                Application.Current.Properties["CompanyAddress"].ToString(),
-                Application.Current.Properties["CompanyVAT"].ToString()
-                )
-            );
+            string name = Application.Current.Properties.ContainsKey("CompanyName") ? (string)Application.Current.Properties["CompanyName"] : null;
+            string address = Application.Current.Properties.ContainsKey("CompanyAddress") ? (string)Application.Current.Properties["CompanyAddress"] : null;
+            string vat = Application.Current.Properties.ContainsKey("CompanyVAT") ? (string)Application.Current.Properties["CompanyVAT"] : null;
+
+            await Navigation.PushAsync(new AddCompanyData(name, address, vat));
         }
 
         void ToolbarItem_ManageCars(object sender, EventArgs e)
