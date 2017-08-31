@@ -48,6 +48,26 @@ namespace TravelRecord
                 Cars.ItemsSource = CarList;
                 Cars.SelectedIndex = 0;
             });
+
+            MessagingCenter.Subscribe<App>(this, "GenerateInstallNavigationStack", (sender) =>
+            {
+                Navigation.PushAsync(new AddCarData());
+                Navigation.PushAsync(new AddCompanyData());
+                
+                MessagingCenter.Subscribe<AddCarData, Car>(this, "DatabaseOperationSucceeded", (_sender, car) =>
+                {
+                    CarList = LoadCars();
+                    Cars.ItemsSource = CarList;
+                    Cars.SelectedIndex = 0;
+
+                    Application.Current.Properties["Installed"] = true;
+
+                    MessagingCenter.Unsubscribe<AddCarData, Car>(this, "DatabaseOperationSucceeded");
+                });
+
+                MessagingCenter.Unsubscribe<App>(this, "GenerateInstallNavigationStack");
+                
+            });
         }
 
         async void Button_AddNewTravel(object sender, EventArgs e)

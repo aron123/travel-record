@@ -34,6 +34,7 @@ namespace TravelRecord
         protected override void OnStart()
         {
             // Handle when app starts
+            InitializeTables();
             SetMainPage();
         }
 
@@ -45,6 +46,12 @@ namespace TravelRecord
         protected override void OnResume()
         {
             // Handle when app resumes
+        }
+
+        void InitializeTables()
+        {
+            Database.CreateTable<Car>();
+            Database.CreateTable<Travel>();
         }
 
         public bool IsCompanyDataSet()
@@ -63,11 +70,7 @@ namespace TravelRecord
 
         public bool IsCarDataSet()
         {
-            // Check if Car table is exist
-            string IsExist = Database.ExecuteScalar<string>("SELECT name FROM sqlite_master WHERE type='table' AND name='Car';");
-            if (IsExist == null) return false;
-
-            //Check if existing Car table is empty
+            //Check if Car table is empty
             int IsEmpty = Database.ExecuteScalar<int>("SELECT COUNT(*) FROM Car LIMIT 1;");
             if (IsEmpty == 0) return false;
 
@@ -79,22 +82,20 @@ namespace TravelRecord
         /// </summary>
         public void SetMainPage()
         {
-            if (IsCompanyDataSet())
+            if (Current.Properties.ContainsKey("Installed") == false || (bool)Current.Properties["Installed"] == false)
             {
-                if (IsCarDataSet())
-                {
-                    MainPage = new NavigationPage(new ListTravels());
-                }
-                else
-                {
-                    MainPage = new NavigationPage(new AddCarData());
-                }
-            }
-            else
-            {
-                MainPage = new NavigationPage(new AddCompanyData());
+                ConfigureInstallation();
+                return;
             }
 
+            MainPage = new NavigationPage(new ListTravels());
+        }
+
+        void ConfigureInstallation()
+        {
+            Application.Current.Properties["Installed"] = false;
+            MainPage = new NavigationPage(new ListTravels());
+            MessagingCenter.Send<App>(this, "GenerateInstallNavigationStack");
         }
     }
 }
