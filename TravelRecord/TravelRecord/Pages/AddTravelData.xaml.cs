@@ -33,10 +33,11 @@ namespace TravelRecord
             this.travel.CarLicensePlate = LicensePlateNumber;
 
             Car test = new Car();
+
+            //check if LicensePlateNumber is exist in database
             test = database.FindWithQuery<Car>("SELECT * FROM Car WHERE LicensePlateNumber=?", LicensePlateNumber);
             if (test == null)
-                throw new NotImplementedException(); //TODO: Implement this.
-            database.Close();
+                Navigation.PopAsync();
 
             Title = "Új utazás: " + LicensePlateNumber;
 
