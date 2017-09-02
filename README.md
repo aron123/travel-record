@@ -13,4 +13,4 @@ Dependencies
 
 Screenshots
 -----------
-| <img src="./Screenshots/Screenshot1.png" width="200"> | <img src="./Screenshots/Screenshot2.png" width="200"> | <img src="./Screenshots/Screenshot3.png" width="200"> |
+<img src="./Screenshots/Screenshot1.png" width="200"> <img src="./Screenshots/Screenshot2.png" width="200"> <img src="./Screenshots/Screenshot3.png" width="200">
